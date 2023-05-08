@@ -18,10 +18,10 @@ const Checkout = () => {
     <div className="checkout-container">
       <div className="checkout-header">
         <div className="header-block">
-          <span>Product</span>
+          <span>Produkt</span>
         </div>
         <div className="header-block">
-          <span>Titel</span>
+          <span className="titel">Titel</span>
         </div>
         <div className="header-block">
           <span>Antal</span>

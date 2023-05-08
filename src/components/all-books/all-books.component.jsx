@@ -12,7 +12,7 @@ const AllBooks = () => {
 
   return (
     <Fragment>
-      <h2>Alla böcker</h2>
+      <h2 className="all-books-h2">Alla böcker</h2>
       <div className="products-container">
         {allBooks.map((product) => (
           <ProductCard key={product.id} product={product} />
