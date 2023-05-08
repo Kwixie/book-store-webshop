@@ -1,37 +1,44 @@
-import { useContext } from 'react';
+import { useSelector } from "react-redux";
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
 
-import { CartContext } from '../../contexts/cart.context';
+import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import PaymentForm from "../../components/payment-form/payment-form-component";
 
-import CheckoutItem from '../../components/checkout-item/checkout-item.component';
-
-import './checkout.styles.scss';
+import "./checkout.styles.scss";
+import Footer from "../../components/footer/footer.component";
 
 const Checkout = () => {
-  const { cartItems, cartTotal } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
 
   return (
-    <div className='checkout-container'>
-      <div className='checkout-header'>
-        <div className='header-block'>
+    <div className="checkout-container">
+      <div className="checkout-header">
+        <div className="header-block">
           <span>Product</span>
         </div>
-        <div className='header-block'>
-          <span>Description</span>
+        <div className="header-block">
+          <span>Titel</span>
         </div>
-        <div className='header-block'>
-          <span>Quantity</span>
+        <div className="header-block">
+          <span>Antal</span>
         </div>
-        <div className='header-block'>
-          <span>Price</span>
+        <div className="header-block">
+          <span>Pris</span>
         </div>
-        <div className='header-block'>
-          <span>Remove</span>
+        <div className="header-block">
+          <span>Ta bort</span>
         </div>
       </div>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <div className='total'>TOTAL: ${cartTotal}</div>
+      <div className="total">TOTALT: {cartTotal}kr</div>
+      <PaymentForm />
+      <Footer />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { useContext, Fragment } from "react";
 import ProductCard from "../product-card/product-card.component";
 import { ProductsContext } from "../../contexts/products.context";
+import Footer from "../footer/footer.component";
 
 const AllBooks = () => {
   const { productsMap } = useContext(ProductsContext);
@@ -17,6 +18,7 @@ const AllBooks = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+      <Footer />
     </Fragment>
   );
 };

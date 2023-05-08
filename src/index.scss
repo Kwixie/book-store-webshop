@@ -1,12 +1,14 @@
 body {
   margin: 0;
   padding: 20px 40px;
-  font-family: "Open Sans Condensed", sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*   background-image: url(./assets/background-bw-edited.jpg);
+  background-image: url("https://source.unsplash.com/DgQf1dUKUTM");
   background-size: cover;
-  background-position: center; */
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
 }
 
 code {

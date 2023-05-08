@@ -1,0 +1,38 @@
+footer {
+  margin: 5rem auto 0rem auto;
+
+  .container-footer {
+    display: grid;
+    grid-template-columns: 50% 20% 20%;
+    grid-gap: 2rem;
+    font-weight: 400;
+    font-size: 12px;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(92, 30, 1);
+
+    h3 {
+      color: rgb(92, 30, 1);
+    }
+
+    @media (max-width: 850px) {
+      grid-template-columns: 1fr;
+    }
+
+    .icon {
+      font-size: 24px;
+      margin: 5px;
+    }
+    .link {
+      &:hover {
+        color: rgb(132, 132, 132);
+      }
+    }
+  }
+  .copyright {
+    text-align: center;
+    color: rgb(128, 128, 128);
+    p {
+      margin: 0rem;
+    }
+  }
+}

@@ -9,6 +9,7 @@
     height: 100%;
     width: 70px;
     padding: 25px;
+    animation: spin 4s infinite;
   }
 
   .nav-links-container {
@@ -17,10 +18,33 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    @media (max-width: 480px) {
+      width: 70%;
+      font-size: 16px;
+      white-space: nowrap;
+    }
 
     .nav-link {
       padding: 10px 15px;
       cursor: pointer;
     }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  26% {
+    transform: rotate(200deg);
+  }
+  46% {
+    transform: rotate(190deg);
+  }
+  76% {
+    transform: rotate(370deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

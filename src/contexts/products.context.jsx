@@ -11,10 +11,11 @@ export const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     const getCategoriesMap = async () => {
-      const categoryMap = await getCategoriesAndDocuments();
-      console.log(categoryMap);
-      setProductsMap(categoryMap);
+      const productsMap = await getCategoriesAndDocuments();
+      console.log(productsMap);
+      setProductsMap(productsMap);
     };
+
     getCategoriesMap();
   }, []);
 

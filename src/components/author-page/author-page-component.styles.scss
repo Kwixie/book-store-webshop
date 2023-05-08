@@ -1,0 +1,22 @@
+.top-list-container {
+  display: flex;
+  justify-content: center;
+
+  .image-column {
+    min-width: 200px;
+  }
+
+  .summary-column {
+    .summary {
+      height: 395px;
+      padding-left: 30px;
+    }
+    @media (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  .product-card-container {
+    margin-bottom: 3rem;
+  }
+}

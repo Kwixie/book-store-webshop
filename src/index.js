@@ -1,27 +1,27 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { render } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import { Provider } from "react-redux";
+import "./index.scss";
+import { store } from "./store/store";
+import { Elements } from "@stripe/react-stripe-js";
+import { stripePromise } from "./utils/stripe/stripe.utils";
+import { ProductsProvider } from "./contexts/products.context";
 
-import App from './App';
-import { UserProvider } from './contexts/user.context';
-import { ProductsProvider } from './contexts/products.context';
-import { CartProvider } from './contexts/cart.context';
-
-import './index.scss';
-
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 
 render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <ProductsProvider>
-          <CartProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Elements stripe={stripePromise}>
+          <ProductsProvider>
             <App />
-          </CartProvider>
-        </ProductsProvider>
-      </UserProvider>
-    </BrowserRouter>
+          </ProductsProvider>
+        </Elements>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   rootElement
 );
