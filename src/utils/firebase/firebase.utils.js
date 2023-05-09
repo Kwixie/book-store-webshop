@@ -18,6 +18,7 @@ import {
   writeBatch,
   query,
   getDocs,
+  updateDoc,
 } from "firebase/firestore"; // doc = retrieve/an instance, getDoc = get the data
 ////////////////////
 
@@ -46,7 +47,7 @@ export const signInWithGoogleRedirect = () =>
 
 //////////////////////
 
-export const db = getFirestore();
+export const db = getFirestore(firebaseApp);
 
 export const addCollectionAndDocuments = async (
   collectionKey,
@@ -81,6 +82,34 @@ export const getCategoriesAndDocuments = async () => {
 };
 
 /////////////////////
+/* export const getUsersFavourites = async (userId) => {
+  const userDocRef = doc(db, "users", userId);
+  const querySnapshot = await getDocs(userDocRef);
+}; */
+
+export const queryDocuments = async (userId) => {
+  try {
+    const docRef = doc(db, "users", userId);
+    const docSnap = await getDoc(docRef);
+    const { favourite } = docSnap.data();
+    return favourite;
+  } catch (error) {
+    console.error("Error querying documents:", error);
+  }
+};
+
+export const queryUsersFavourites = async (userId) => {
+  try {
+    const docRef = doc(db, "users", userId);
+    const docSnap = await getDoc(docRef);
+    const { favourite } = docSnap.data();
+    return favourite;
+  } catch (error) {
+    console.error("Error querying documents:", error);
+  }
+};
+
+/////////////////////
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -95,12 +124,14 @@ export const createUserDocumentFromAuth = async (
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
+    const favourite = [];
 
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
         createdAt,
+        favourite,
         ...additionalInformation,
       });
     } catch (error) {
@@ -110,6 +141,22 @@ export const createUserDocumentFromAuth = async (
 
   return userDocRef;
 };
+
+//////////////////
+export const updateUserDocument = async (userId, updatedData) => {
+  try {
+    const userRef = doc(db, "users", userId);
+
+    // Use the update() method to update specific fields of the document
+    await updateDoc(userRef, updatedData);
+
+    console.log("User document updated successfully!");
+  } catch (error) {
+    console.error("Error updating user document:", error);
+  }
+};
+
+/////////////////////
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;

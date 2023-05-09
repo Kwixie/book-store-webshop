@@ -4,12 +4,25 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./assets/background-books-small2.jpg");
-  //background-image: url("https://source.unsplash.com/DgQf1dUKUTM");
-  background-size: cover;
+  position: relative;
+
   @media (max-width: 480px) {
     padding: 20px;
   }
+}
+
+body:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-image: url("./assets/background-books-small2.jpg");
+  background-size: cover;
+  opacity: 0.35;
+  z-index: -5;
 }
 
 code {
