@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
@@ -9,6 +9,16 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-up-form.styles.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDocRef } from "../../store/user/user.slice";
+import { selectUserDocRef } from "../../store/user/user.selector";
+import { Navigate } from "react-router-dom";
+/* import {
+  selectCurrentUser,
+  selectUsersFavourites,
+} from "../../store/user/user.selector";
+import { setUsersFavourites } from "../../store/user/user.slice";
+import { queryDocuments } from "../../utils/firebase/firebase.utils"; */
 
 const defaultFormFields = {
   displayName: "",
@@ -20,6 +30,33 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  const dispatch = useDispatch();
+  /*   const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const usersFavourites = useSelector(selectUsersFavourites); */
+
+  /*   useEffect(() => {
+    if (currentUser) {
+      handleCurrentUserChange(currentUser);
+      console.log(currentUser);
+    }
+  }, [currentUser]); */
+
+  /*   useEffect(() => {
+    if (usersFavourites) {
+      console.log(usersFavourites);
+    }
+  }, [usersFavourites]);
+ */
+  /*   const handleCurrentUserChange = async (user) => {
+    try {
+      console.log("handleCurrentChange");
+      const favourites = await queryDocuments(user.uid);
+      dispatch(setUsersFavourites(favourites));
+    } catch (error) {
+      console.log("Error querying user documents:", error);
+    }
+  }; */
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -39,8 +76,15 @@ const SignUpForm = () => {
         password
       );
 
-      await createUserDocumentFromAuth(user, { displayName });
+      const userDocRef = await createUserDocumentFromAuth(user, {
+        displayName,
+      });
+      dispatch(setUserDocRef(userDocRef));
+      /*       console.log(userDocRef);
+      await handleCurrentUserChange(currentUser); */
+
       resetFormFields();
+      return <Navigate to="/" />;
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");

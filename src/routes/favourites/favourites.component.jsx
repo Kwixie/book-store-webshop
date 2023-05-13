@@ -20,9 +20,10 @@ const Favourites = () => {
     <div>
       <h2 className="category-h2">Favoriter</h2>
       <div className="products-container">
-        {favouritesArray.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {favouritesArray &&
+          favouritesArray.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
       </div>
       <Footer />
     </div>

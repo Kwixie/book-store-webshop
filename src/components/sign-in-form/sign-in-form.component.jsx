@@ -4,19 +4,20 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
 import {
-  queryDocuments,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-in-form.styles.scss";
-import { useEffect } from "react";
+/* import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentUser,
   selectUsersFavourites,
 } from "../../store/user/user.selector";
-import { setUsersFavourites } from "../../store/user/user.slice";
+import { setUsersFavourites } from "../../store/user/user.slice"; */
+import { setUserDocRef } from "../../store/user/user.slice";
+import { useDispatch } from "react-redux";
 
 const defaultFormFields = {
   email: "",
@@ -24,13 +25,14 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-  const dispatch = useDispatch();
+  /*   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const usersFavourites = useSelector(selectUsersFavourites);
+  const usersFavourites = useSelector(selectUsersFavourites); */
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const dispatch = useDispatch();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (currentUser) {
       handleCurrentUserChange(currentUser);
       console.log(currentUser);
@@ -50,13 +52,14 @@ const SignInForm = () => {
     } catch (error) {
       console.log("Error querying user documents:", error);
     }
-  };
+  }; */
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
   const signInWithGoogle = async () => {
+    dispatch(setUserDocRef(true));
     await signInWithGooglePopup();
   };
 
@@ -64,6 +67,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
+      dispatch(setUserDocRef(true));
       await signInAuthUserWithEmailAndPassword(email, password);
       console.log("sign in fired");
       resetFormFields();

@@ -13,10 +13,38 @@ import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
 import Favourites from "./routes/favourites/favourites.component";
-import { selectCurrentUser } from "./store/user/user.selector";
+import {
+  selectCurrentUser,
+  selectUserDocRef,
+  selectUsersFavourites,
+} from "./store/user/user.selector";
+import { queryDocuments } from "./utils/firebase/firebase.utils";
+import { setUsersFavourites } from "./store/user/user.slice";
 
 const App = () => {
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const userDocRef = useSelector(selectUserDocRef);
+
+  const handleCurrentUserChange = async (user) => {
+    if (!userDocRef) {
+      return;
+    }
+    try {
+      console.log("handleCurrentChange");
+      const favourites = await queryDocuments(user.uid);
+      dispatch(setUsersFavourites(favourites));
+    } catch (error) {
+      console.log("Error querying user documents:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      handleCurrentUserChange(currentUser);
+      console.log(currentUser);
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
