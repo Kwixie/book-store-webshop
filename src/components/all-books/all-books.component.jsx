@@ -6,13 +6,11 @@ import Footer from "../footer/footer.component";
 
 const AllBooks = () => {
   const { productsMap } = useContext(ProductsContext);
-  console.log(productsMap);
   const allBooks = productsMap["alla böcker"];
-  console.log(allBooks);
 
   return (
     <Fragment>
-      <h2 className="all-books-h2">Alla böcker</h2>
+      <h2 className="category-h2">Alla böcker</h2>
       <div className="products-container">
         {allBooks.map((product) => (
           <ProductCard key={product.id} product={product} />

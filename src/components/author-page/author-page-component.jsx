@@ -11,6 +11,8 @@ const AuthorPage = () => {
   console.log(formattedAuthor);
   const { productsMap } = useContext(ProductsContext);
   const [products, setProducts] = useState(productsMap[formattedAuthor]);
+  const capitalizedAuthor =
+    formattedAuthor.charAt(0).toUpperCase() + formattedAuthor.slice(1);
 
   useEffect(() => {
     setProducts(productsMap[formattedAuthor]);
@@ -40,6 +42,7 @@ const AuthorPage = () => {
 
   return (
     <>
+      <h2 className="category-h2">{capitalizedAuthor}</h2>
       <div className="products-container">
         {products &&
           products.map((product) => (

@@ -4,11 +4,19 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
 import {
+  queryDocuments,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-in-form.styles.scss";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCurrentUser,
+  selectUsersFavourites,
+} from "../../store/user/user.selector";
+import { setUsersFavourites } from "../../store/user/user.slice";
 
 const defaultFormFields = {
   email: "",
@@ -16,8 +24,33 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const usersFavourites = useSelector(selectUsersFavourites);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
+  useEffect(() => {
+    if (currentUser) {
+      handleCurrentUserChange(currentUser);
+      console.log(currentUser);
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (usersFavourites) {
+      console.log(usersFavourites);
+    }
+  }, [usersFavourites]);
+
+  const handleCurrentUserChange = async (user) => {
+    try {
+      const favourites = await queryDocuments(user.uid);
+      dispatch(setUsersFavourites(favourites));
+    } catch (error) {
+      console.log("Error querying user documents:", error);
+    }
+  };
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -32,6 +65,7 @@ const SignInForm = () => {
 
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
+      console.log("sign in fired");
       resetFormFields();
     } catch (error) {
       console.log("user sign in failed", error);

@@ -6,7 +6,6 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateUserDocument } from "../../utils/firebase/firebase.utils";
-import { queryDocuments } from "../../utils/firebase/firebase.utils";
 import { selectUsersFavourites } from "../../store/user/user.selector";
 import { setUsersFavourites } from "../../store/user/user.slice";
 import { useState, useEffect } from "react";
@@ -18,16 +17,6 @@ const ProductCard = ({ product }) => {
   const usersFavourites = useSelector(selectUsersFavourites);
   const addProductToCart = () => dispatch(addItemToCart(product));
   const [isLiked, setIsLiked] = useState(false);
-
-  useEffect(() => {
-    const updateUsersFavourites = async () => {
-      const favourites = await queryDocuments(currentUser.uid);
-      dispatch(setUsersFavourites(favourites));
-    };
-    if (currentUser) {
-      updateUsersFavourites();
-    }
-  }, [currentUser]);
 
   useEffect(() => {
     if (usersFavourites.includes(id)) {
@@ -78,3 +67,14 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
+/* useEffect(() => {
+  const updateUsersFavourites = async () => {
+    const favourites = await queryDocuments(currentUser.uid);
+    dispatch(setUsersFavourites(favourites));
+  };
+  if (currentUser) {
+    updateUsersFavourites();
+    console.log("updated!");
+  }
+}, []); */

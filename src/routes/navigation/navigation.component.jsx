@@ -10,6 +10,8 @@ import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { ReactComponent as BookStoreLogo } from "../../assets/Eye-Glasses.svg";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./navigation.styles.scss";
 
@@ -37,6 +39,9 @@ const Navigation = () => {
               LOGGA IN
             </Link>
           )}
+          <Link className="nav-link" to="/favoriter">
+            <FontAwesomeIcon icon={faHeart} />
+          </Link>
           <CartIcon />
         </div>
         {isCartOpen && <CartDropdown />}
