@@ -26,12 +26,21 @@ const AuthorPage = () => {
           <div className="image-column">
             {products &&
               products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <div>
+                  <ProductCard key={product.id} product={product} />
+                  <div className="summary-mobile">
+                    <h2 className="toplist-position">{product.position}</h2>
+                    <p className="summary">{product.summary}</p>
+                  </div>
+                </div>
               ))}
           </div>
           <div className="summary-column">
             {products.map((product) => (
-              <p className="summary">{product.summary}</p>
+              <div key={product.id}>
+                <h2 className="toplist-position">{product.position}</h2>
+                <p className="summary">{product.summary}</p>
+              </div>
             ))}
           </div>
         </div>

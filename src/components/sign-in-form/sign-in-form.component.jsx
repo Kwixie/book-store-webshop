@@ -18,6 +18,7 @@ import {
 import { setUsersFavourites } from "../../store/user/user.slice"; */
 import { setUserDocRef } from "../../store/user/user.slice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
   email: "",
@@ -31,6 +32,7 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   /*   useEffect(() => {
     if (currentUser) {
@@ -71,6 +73,7 @@ const SignInForm = () => {
       await signInAuthUserWithEmailAndPassword(email, password);
       console.log("sign in fired");
       resetFormFields();
+      navigate("/");
     } catch (error) {
       console.log("user sign in failed", error);
     }

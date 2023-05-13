@@ -12,7 +12,7 @@ import "./sign-up-form.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDocRef } from "../../store/user/user.slice";
 import { selectUserDocRef } from "../../store/user/user.selector";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 /* import {
   selectCurrentUser,
   selectUsersFavourites,
@@ -31,6 +31,7 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   /*   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const usersFavourites = useSelector(selectUsersFavourites); */
@@ -56,6 +57,10 @@ const SignUpForm = () => {
     } catch (error) {
       console.log("Error querying user documents:", error);
     }
+  }; */
+
+  /*   const handleRedirect = () => {
+    
   }; */
 
   const resetFormFields = () => {
@@ -84,7 +89,7 @@ const SignUpForm = () => {
       await handleCurrentUserChange(currentUser); */
 
       resetFormFields();
-      return <Navigate to="/" />;
+      navigate("/");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");

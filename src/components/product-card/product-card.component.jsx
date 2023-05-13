@@ -11,7 +11,7 @@ import { setUsersFavourites } from "../../store/user/user.slice";
 import { useState, useEffect } from "react";
 
 const ProductCard = ({ product }) => {
-  const { name, price, imageUrl, id } = product;
+  const { name, price, imageUrl, id, author } = product;
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const usersFavourites = useSelector(selectUsersFavourites);
@@ -56,8 +56,11 @@ const ProductCard = ({ product }) => {
 
       <img src={imageUrl} alt={`${name}`} />
       <div className="footer">
-        <span className="name">{name}</span>
-        <span className="price">{price}kr</span>
+        <div className="first-row">
+          <span className="name">{name}</span>
+          <span className="price">{price}kr</span>
+        </div>
+        <p className="author">{author}</p>
       </div>
       <Button buttonType="inverted" onClick={addProductToCart}>
         Köp
