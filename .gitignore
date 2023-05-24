@@ -12,6 +12,7 @@
 /build
 
 .env
+/src/shop-data.js
 
 # misc
 .DS_Store

@@ -1,11 +1,9 @@
 import { useDispatch } from "react-redux";
-
 import {
   clearItemFromCart,
   addItemToCart,
   removeItemFromCart,
 } from "../../store/cart/cart.slice";
-
 import "./checkout-item.styles.scss";
 
 const CheckoutItem = ({ cartItem }) => {

@@ -14,7 +14,6 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { setUsersFavourites } from "../../store/user/user.slice";
 import { setUserDocRef } from "../../store/user/user.slice";
-
 import "./navigation.styles.scss";
 
 const Navigation = () => {

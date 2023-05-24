@@ -5,10 +5,12 @@
   row-gap: 70px;
   max-width: 1200px;
   margin: auto;
+
   @media (max-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 15px;
   }
+
   @media (max-width: 650px) {
     grid-template-columns: repeat(2, 1fr);
   }

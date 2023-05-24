@@ -1,3 +1,5 @@
+@import "../../index.scss";
+
 footer {
   margin: 5rem auto 0rem auto;
 
@@ -8,14 +10,14 @@ footer {
     font-weight: 400;
     font-size: 12px;
     padding-top: 1rem;
-    border-top: 1px solid rgb(92, 30, 1);
+    border-top: 1px solid $primary;
 
     @media (max-width: 480px) {
       font-size: 14px;
     }
 
     h3 {
-      color: rgb(92, 30, 1);
+      color: $primary;
     }
 
     @media (max-width: 850px) {

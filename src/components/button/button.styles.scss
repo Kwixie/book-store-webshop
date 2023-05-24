@@ -1,3 +1,5 @@
+@import "../../index.scss";
+
 .button-container {
   min-width: 165px;
   width: auto;
@@ -6,7 +8,7 @@
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: rgb(92, 30, 1);
+  background-color: $primary;
   color: white;
   text-transform: uppercase;
   font-family: "Open Sans Condensed";
@@ -39,7 +41,7 @@
     border: 1px solid black;
 
     &:hover {
-      background-color: rgb(92, 30, 1);
+      background-color: $primary;
       color: white;
       border: none;
     }

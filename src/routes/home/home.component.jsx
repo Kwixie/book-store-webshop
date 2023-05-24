@@ -1,15 +1,14 @@
 import { Outlet } from "react-router-dom";
-import "./home.component.scss";
 import Footer from "../../components/footer/footer.component";
-
 import Directory from "../../components/directory/directory.component";
+import "./home.component.scss";
 
 const Home = () => {
   const categories = [
     {
       id: 1,
       title: "Topplistan",
-      imageUrl: "https://source.unsplash.com/Gs-tdnDyYKE", //FgEngMJ0ocY
+      imageUrl: "https://source.unsplash.com/Gs-tdnDyYKE",
     },
     {
       id: 2,
@@ -40,7 +39,7 @@ const Home = () => {
     <div>
       <h1 className="h1-title">Klassiska bokshoppen</h1>
       <Directory categories={categories} />
-      <Footer/>
+      <Footer />
       <Outlet />
     </div>
   );

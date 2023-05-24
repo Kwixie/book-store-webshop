@@ -1,7 +1,9 @@
+@import "../../index.scss";
+
 .h1-title {
   font-size: 60px;
   text-align: center;
   font-family: "Sacramento", cursive;
-  color: rgb(92, 30, 1);
+  color: $primary;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

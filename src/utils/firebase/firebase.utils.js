@@ -19,11 +19,10 @@ import {
   query,
   getDocs,
   updateDoc,
-} from "firebase/firestore"; // doc = retrieve/an instance, getDoc = get the data
-////////////////////
+} from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAwffnrzZbQGRlnYXseUXBwxIMJj516368", // it's not secret
+  apiKey: "AIzaSyAwffnrzZbQGRlnYXseUXBwxIMJj516368",
   authDomain: "book-store-webshop-db.firebaseapp.com",
   projectId: "book-store-webshop-db",
   storageBucket: "book-store-webshop-db.appspot.com",
@@ -31,7 +30,7 @@ const firebaseConfig = {
   appId: "1:224301990374:web:85f6c8ad35ee0c1eacd627",
 };
 
-const firebaseApp = initializeApp(firebaseConfig); // uses obove, to make CRUD actions
+const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -44,8 +43,6 @@ export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
-
-//////////////////////
 
 export const db = getFirestore(firebaseApp);
 
@@ -66,8 +63,6 @@ export const addCollectionAndDocuments = async (
   console.log("done");
 };
 
-//////////////////
-
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
@@ -80,12 +75,6 @@ export const getCategoriesAndDocuments = async () => {
   }, {});
   return categoryMap;
 };
-
-/////////////////////
-/* export const getUsersFavourites = async (userId) => {
-  const userDocRef = doc(db, "users", userId);
-  const querySnapshot = await getDocs(userDocRef);
-}; */
 
 export const queryDocuments = async (userId) => {
   try {
@@ -109,15 +98,13 @@ export const queryUsersFavourites = async (userId) => {
   }
 };
 
-/////////////////////
-
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
 ) => {
   if (!userAuth) return;
 
-  const userDocRef = doc(db, "users", userAuth.uid); // calling the doc from db. Collection and ... uid = uniqe id
+  const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -142,12 +129,10 @@ export const createUserDocumentFromAuth = async (
   return userDocRef;
 };
 
-//////////////////
 export const updateUserDocument = async (userId, updatedData) => {
   try {
     const userRef = doc(db, "users", userId);
 
-    // Use the update() method to update specific fields of the document
     await updateDoc(userRef, updatedData);
 
     console.log("User document updated successfully!");
@@ -155,8 +140,6 @@ export const updateUserDocument = async (userId, updatedData) => {
     console.error("Error updating user document:", error);
   }
 };
-
-/////////////////////
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;

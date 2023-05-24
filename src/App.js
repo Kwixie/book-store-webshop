@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
@@ -16,7 +15,6 @@ import Favourites from "./routes/favourites/favourites.component";
 import {
   selectCurrentUser,
   selectUserDocRef,
-  selectUsersFavourites,
 } from "./store/user/user.selector";
 import { queryDocuments } from "./utils/firebase/firebase.utils";
 import { setUsersFavourites } from "./store/user/user.slice";
@@ -42,7 +40,6 @@ const App = () => {
   useEffect(() => {
     if (currentUser) {
       handleCurrentUserChange(currentUser);
-      console.log(currentUser);
     }
   }, [currentUser]);
 
@@ -52,7 +49,6 @@ const App = () => {
         createUserDocumentFromAuth(user);
       }
       dispatch(setCurrentUser(user));
-      console.log("I fired");
     });
 
     return unsubscribe;

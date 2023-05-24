@@ -1,7 +1,6 @@
-import React from "react";
 import { useContext, Fragment } from "react";
-import ProductCard from "../product-card/product-card.component";
 import { ProductsContext } from "../../contexts/products.context";
+import ProductCard from "../product-card/product-card.component";
 import Footer from "../footer/footer.component";
 
 const AllBooks = () => {

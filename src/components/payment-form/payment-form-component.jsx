@@ -1,10 +1,9 @@
-import "./payment-form.component.styles.scss";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { selectCartTotal } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
-
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import "./payment-form.component.styles.scss";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -28,11 +27,7 @@ const PaymentForm = () => {
       return res.json();
     });
 
-    console.log(response);
-
     const clientSecret = response.paymentIntent.client_secret;
-
-    console.log(clientSecret);
 
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {

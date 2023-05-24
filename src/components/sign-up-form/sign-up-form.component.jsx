@@ -1,24 +1,14 @@
-import { useState, useEffect } from "react";
-
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
-
+import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-
-import "./sign-up-form.styles.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserDocRef } from "../../store/user/user.slice";
-import { selectUserDocRef } from "../../store/user/user.selector";
 import { useNavigate } from "react-router-dom";
-/* import {
-  selectCurrentUser,
-  selectUsersFavourites,
-} from "../../store/user/user.selector";
-import { setUsersFavourites } from "../../store/user/user.slice";
-import { queryDocuments } from "../../utils/firebase/firebase.utils"; */
+import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
+import "./sign-up-form.styles.scss";
 
 const defaultFormFields = {
   displayName: "",
@@ -32,36 +22,6 @@ const SignUpForm = () => {
   const { displayName, email, password, confirmPassword } = formFields;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  /*   const dispatch = useDispatch();
-  const currentUser = useSelector(selectCurrentUser);
-  const usersFavourites = useSelector(selectUsersFavourites); */
-
-  /*   useEffect(() => {
-    if (currentUser) {
-      handleCurrentUserChange(currentUser);
-      console.log(currentUser);
-    }
-  }, [currentUser]); */
-
-  /*   useEffect(() => {
-    if (usersFavourites) {
-      console.log(usersFavourites);
-    }
-  }, [usersFavourites]);
- */
-  /*   const handleCurrentUserChange = async (user) => {
-    try {
-      console.log("handleCurrentChange");
-      const favourites = await queryDocuments(user.uid);
-      dispatch(setUsersFavourites(favourites));
-    } catch (error) {
-      console.log("Error querying user documents:", error);
-    }
-  }; */
-
-  /*   const handleRedirect = () => {
-    
-  }; */
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -85,8 +45,6 @@ const SignUpForm = () => {
         displayName,
       });
       dispatch(setUserDocRef(userDocRef));
-      /*       console.log(userDocRef);
-      await handleCurrentUserChange(currentUser); */
 
       resetFormFields();
       navigate("/");
