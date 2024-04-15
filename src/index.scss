@@ -7,6 +7,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  min-height: 100vh;
+
+  #root {
+    height: 100%;
+
+    footer {
+      position: fixed;
+      bottom: 0px;
+      padding-bottom: 20px;
+      width: calc(100% - 80px);
+
+      @media (max-width: 480px) {
+        position: static;
+        width: calc(100% - 10px);
+      }
+    }
+  }
 
   @media (max-width: 480px) {
     padding: 20px;
