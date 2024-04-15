@@ -12,17 +12,30 @@ body {
   #root {
     height: 100%;
 
-    footer {
-      position: fixed;
-      bottom: 0px;
-      padding-bottom: 20px;
-      width: calc(100% - 80px);
-
-      @media (max-width: 480px) {
-        position: static;
-        width: calc(100% - 10px);
-      }
+    .page-wrapper {
+      min-height: calc(100vh - 150px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
+
+    .site-max-width {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    // footer {
+    //   position: fixed;
+    //   bottom: 0px;
+    //   padding-bottom: 20px;
+    //   width: calc(100% - 80px);
+
+    //   @media (max-width: 480px) {
+    //     position: static;
+    //     width: calc(100% - 10px);
+    //   }
+    // }
   }
 
   @media (max-width: 480px) {

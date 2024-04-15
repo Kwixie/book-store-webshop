@@ -36,9 +36,11 @@ const Home = () => {
   ];
 
   return (
-    <div>
-      <h1 className="h1-title">Klassiska bokshoppen</h1>
-      <Directory categories={categories} />
+    <div className="page-wrapper">
+      <div>
+        <h1 className="h1-title">Klassiska bokshoppen</h1>
+        <Directory categories={categories} />
+      </div>
       <Footer />
       <Outlet />
     </div>

@@ -15,13 +15,15 @@ const Favourites = () => {
   );
 
   return (
-    <div>
-      <h2 className="category-h2">Favoriter</h2>
-      <div className="products-container">
-        {favouritesArray &&
-          favouritesArray.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+    <div className="page-wrapper">
+      <div>
+        <h2 className="category-h2">Favoriter</h2>
+        <div className="products-container">
+          {favouritesArray &&
+            favouritesArray.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+        </div>
       </div>
       <Footer />
     </div>

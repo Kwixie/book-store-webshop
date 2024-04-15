@@ -5,10 +5,12 @@ import "./authentication.styles.scss";
 
 const Authentication = () => {
   return (
-    <div>
-      <div className="authentication-container">
-        <SignInForm />
-        <SignUpForm />
+    <div className="page-wrapper">
+      <div>
+        <div className="authentication-container">
+          <SignInForm />
+          <SignUpForm />
+        </div>
       </div>
       <Footer />
     </div>

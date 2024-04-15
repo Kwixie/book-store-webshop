@@ -20,27 +20,29 @@ const AuthorPage = () => {
   if (formattedAuthor === "topplistan") {
     return (
       <>
-        <h2>Topplistan</h2>
-        <div className="top-list-container">
-          <div className="image-column">
-            {products &&
-              products.map((product) => (
-                <div>
-                  <ProductCard key={product.id} product={product} />
-                  <div className="summary-mobile">
-                    <h2 className="toplist-position">{product.position}</h2>
-                    <p className="summary">{product.summary}</p>
+        <div className="site-max-width">
+          <h2>Topplistan</h2>
+          <div className="top-list-container">
+            <div className="image-column">
+              {products &&
+                products.map((product) => (
+                  <div>
+                    <ProductCard key={product.id} product={product} />
+                    <div className="summary-mobile">
+                      <h2 className="toplist-position">{product.position}</h2>
+                      <p className="summary">{product.summary}</p>
+                    </div>
                   </div>
+                ))}
+            </div>
+            <div className="summary-column">
+              {products.map((product) => (
+                <div key={product.id}>
+                  <h2 className="toplist-position">{product.position}</h2>
+                  <p className="summary">{product.summary}</p>
                 </div>
               ))}
-          </div>
-          <div className="summary-column">
-            {products.map((product) => (
-              <div key={product.id}>
-                <h2 className="toplist-position">{product.position}</h2>
-                <p className="summary">{product.summary}</p>
-              </div>
-            ))}
+            </div>
           </div>
         </div>
         <Footer />
